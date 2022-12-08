@@ -26,8 +26,12 @@ public class BlackjackGame {
         ArrayList<PlayingCard> deck = new ArrayList<>();
         CardDeck cardDeck = new CardDeck(deck);
 
+        Scanner scanner = new Scanner(System.in);
+
         int score = 0;
         int gameCounter = 1;
+        int balance = 100;
+        int input;
 
         System.out.println("\nWelcome to BlackJack!\n");
         System.out.println("""
@@ -39,7 +43,13 @@ public class BlackjackGame {
                 - Cards 2 through 10 are worth their face value, and face cards (jack, queen, king) are also worth 10.
                 """);
         System.out.printf("Game %d:\n", gameCounter);
-        System.out.printf("Your score is: %d\n\n", score);
+        System.out.printf("Your score is: %d\n", score);
+        System.out.printf("Your balance is: $%d\n\n", balance);
+
+        System.out.println("Please enter an amount to wager: \n");
+        input = Integer.parseInt(scanner.nextLine());
+        System.out.println("Please enter an amount to wager: \n");
+        System.out.printf("Your new balance is: $%d\n\n", balance - input);
 
 
         //shuffle the deck
