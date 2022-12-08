@@ -81,7 +81,7 @@ public class BlackjackGame {
         //allow player to hit or stay
         Scanner sc = new Scanner(System.in);
 
-        while(playerHandValue < 21){
+        while(playerHandValue < 21 && dealerHandValue != 21){
             System.out.println("Hit or stay? (h/s)\n");
             String choice = sc.nextLine();
             if(choice.equalsIgnoreCase("h")){ //hit - deal a card to player
@@ -93,6 +93,14 @@ public class BlackjackGame {
                 playerHandValue = calculateHandValue(playerHand);
                 System.out.println("Player Hand Value: " + playerHandValue);
             } else if(choice.equalsIgnoreCase("s")){
+                if(playerHandValue == 20 && dealerHandValue == 20) {
+                    System.out.println("Dealer draws another card.\n");
+                    dealerHand.add(cardDeck.drawCards());
+                    System.out.println("Dealer hand: " + dealerHand);
+                    dealerHandValue = calculateHandValue(dealerHand);
+                    System.out.println("Dealer hand value: " + dealerHandValue);
+                    System.out.println();
+                }
                 while(dealerHandValue < playerHandValue){
                     System.out.println("Dealer draws another card.\n");
                     dealerHand.add(cardDeck.drawCards());
@@ -116,7 +124,6 @@ public class BlackjackGame {
             System.out.println("Dealer wins!");
         } else if(dealerHandValue > 21){ //if dealer busts, player wins
             System.out.println("Dealer busts, player wins!");
-            score++;
         } else{ //if no blackjacks, compare hand values
             if(playerHandValue > dealerHandValue){
                 //if the player's hand exceeds the dealers hand
@@ -137,22 +144,21 @@ public class BlackjackGame {
                     System.out.println("Dealer wins!");
                 }
             }
+        }
+        gameCounter++;
+        //display game results
+        System.out.println();
+        System.out.printf("Game %d:\n", gameCounter);
+        System.out.printf("Your score is: %d\n\n", score);
 
-            gameCounter++;
-            //display game results
-            System.out.println();
-            System.out.printf("Game %d:\n", gameCounter);
-            System.out.printf("Your score is: %d\n\n", score);
-
-            //ask if player wants to play again
-            System.out.println("Play again? (y/n)\n");
-            String playAgain = sc.nextLine();
-            if(playAgain.equalsIgnoreCase("y")){ //restart game
-                main(args);                                 //restart game
-            } else if(playAgain.equalsIgnoreCase("n")){ //end game
-                System.out.println("Goodbye!");
-                System.exit(0); //end game
-            }
+        //ask if player wants to play again
+        System.out.println("Play again? (y/n)\n");
+        String playAgain = sc.nextLine();
+        if(playAgain.equalsIgnoreCase("y")){ //restart game
+            main(args);                                 //restart game
+        } else if(playAgain.equalsIgnoreCase("n")){ //end game
+            System.out.println("Goodbye!");
+            System.exit(0); //end game
         }
     }
 
