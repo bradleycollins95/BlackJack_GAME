@@ -3,20 +3,20 @@ import java.util.Scanner;
 
 /**
  * This is a class for a simple game of Blackjack.
- * When the main method is called, it creates a deck of playing cards, shuffles it, 
- * and then deals two cards to both the player and the dealer. 
- * It then calculates the values of the player's and dealer's hands and displays them. 
- * The player is then given the option to "hit" or "stay", with "hit" meaning 
- * that the player will receive another card and "stay" meaning that the player will keep their current hand. 
- * The game continues until the player chooses to stay 
- * or until their hand value exceeds 21 (at which point the player will lose). 
- * The dealer will then continue to draw cards until their hand value is 
- * greater than or equal to the player's hand value or until their hand value exceeds 21. 
- * The winner is then determined based on the hand values of the player and the dealer. 
- * If the player's hand value is greater than the dealer's hand value or if the dealer's hand value exceeds 21, 
- * the player wins. 
+ * When the main method is called, it creates a deck of playing cards, shuffles it,
+ * and then deals two cards to both the player and the dealer.
+ * It then calculates the values of the player's and dealer's hands and displays them.
+ * The player is then given the option to "hit" or "stay", with "hit" meaning
+ * that the player will receive another card and "stay" meaning that the player will keep their current hand.
+ * The game continues until the player chooses to stay or until their hand value exceeds 21
+ * (at which point the player will lose).
+ * The dealer will continue to draw cards until their hand value is
+ * greater than or equal to the player's hand value or until their hand value exceeds 21.
+ * The winner is then determined based on the hand values of the player and the dealer.
+ * If the player's hand value is greater than the dealer's hand value or
+ * if the dealer's hand value exceeds 21, the player wins.
  * Otherwise, the dealer wins.
- * 
+ *
  * @author 20108508
  */
 public class BlackjackGame {
@@ -80,6 +80,7 @@ public class BlackjackGame {
 
         //allow player to hit or stay
         Scanner sc = new Scanner(System.in);
+
         while(playerHandValue < 21){
             System.out.println("Hit or stay? (h/s)\n");
             String choice = sc.nextLine();
@@ -132,26 +133,26 @@ public class BlackjackGame {
                 if(dealerHandValue > 21){
                     System.out.println("Dealer busts, player wins!");
                     score++;
-                } else{ //if both hands have the same value, tie
-                    System.out.println("Tie!");
+                } else{
+                    System.out.println("Dealer wins!");
                 }
             }
-        }
 
-        //display game results
-        gameCounter++;
-        System.out.println();
-        System.out.printf("Game %d:\n", gameCounter);
-        System.out.printf("Your score is: %d\n\n", score);
+            gameCounter++;
+            //display game results
+            System.out.println();
+            System.out.printf("Game %d:\n", gameCounter);
+            System.out.printf("Your score is: %d\n\n", score);
 
-        //ask if player wants to play again
-        System.out.println("Play again? (y/n)\n");
-        String playAgain = sc.nextLine();
-        if(playAgain.equalsIgnoreCase("y")){ //restart game
-            main(args);                                 //restart game
-        } else if(playAgain.equalsIgnoreCase("n")){ //end game
-            System.out.println("Goodbye!");
-            System.exit(0); //end game
+            //ask if player wants to play again
+            System.out.println("Play again? (y/n)\n");
+            String playAgain = sc.nextLine();
+            if(playAgain.equalsIgnoreCase("y")){ //restart game
+                main(args);                                 //restart game
+            } else if(playAgain.equalsIgnoreCase("n")){ //end game
+                System.out.println("Goodbye!");
+                System.exit(0); //end game
+            }
         }
     }
 
